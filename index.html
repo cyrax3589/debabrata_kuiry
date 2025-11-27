@@ -1,452 +1,641 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Debabrata Kuiry | Data & Automation Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ---------- (all your original CSS kept) ---------- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-primary: #0a0a0a; --bg-secondary: #111111; --bg-tertiary: #1a1a1a;
-            --accent-primary: #6366f1; --accent-secondary: #8b5cf6;
-            --text-primary: #ffffff; --text-secondary: #a1a1aa; --text-tertiary: #71717a;
-            --border: #27272a; --glow: rgba(99, 102, 241, 0.3);
+        /* ---------- Global & vars ---------- */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root{
+            --nav-height: 64px;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --border: #27272a;
+            --glow: rgba(99,102,241,0.28);
         }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary); color: var(--text-primary); line-height: 1.6;
-            overflow-x: hidden; -webkit-font-smoothing: antialiased;
+
+        html,body { height:100%; }
+        body{
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            overflow-x:hidden;
+            padding-top: var(--nav-height);
+            -webkit-tap-highlight-color: transparent;
         }
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-        .bg-gradient { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;
-            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15), transparent 50%),
-                        radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1), transparent 50%); }
-        .grid-overlay { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;
-            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px; opacity: 0.3; mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%); }
 
-        nav {
-            position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; transition: all 0.3s ease;
+        .container{ max-width:1280px; margin:0 auto; padding:0 2rem; }
+
+        /* ---------- Background ---------- */
+        .bg-gradient{
+            position:fixed; inset:0; z-index:-2;
+            background:
+                radial-gradient(ellipse at 10% 10%, rgba(99,102,241,0.12), transparent 25%),
+                radial-gradient(ellipse at 90% 85%, rgba(139,92,246,0.06), transparent 25%),
+                linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.12));
         }
-        nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
-        nav .container { display:flex; justify-content:space-between; align-items:center; padding:1.25rem 2rem; }
-        .logo { font-size:1.5rem; font-weight:800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-1px; }
-        .nav-links { display:flex; gap:3rem; list-style:none; align-items:center; }
-        .nav-links a { color:var(--text-secondary); text-decoration:none; font-size:0.9rem; font-weight:500; position:relative; transition:all .3s; }
-        .nav-links a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--accent-primary); transition: width 0.3s; }
-        .nav-links a:hover { color:var(--text-primary); }
-        .nav-links a:hover::after { width:100%; }
 
-        .hero { min-height:100vh; display:flex; align-items:center; padding-top:80px; position:relative; }
-        .hero-content { display:grid; grid-template-columns:1.2fr 0.8fr; gap:6rem; align-items:center; width:100%; }
-        .hero-text { animation: fadeInUp 1s ease-out; }
-        @keyframes fadeInUp { from{ opacity:0; transform:translateY(30px); } to{ opacity:1; transform:translateY(0); } }
-        .hero-label { display:inline-block; padding:0.5rem 1rem; background: rgba(99, 102, 241, 0.1); border:1px solid rgba(99, 102, 241, 0.3); border-radius:50px;
-            color:var(--accent-primary); font-size:0.85rem; font-weight:600; margin-bottom:2rem; letter-spacing:0.5px; }
-        .hero-text h1 { font-size:4.5rem; font-weight:800; margin-bottom:1.5rem; line-height:1.1; letter-spacing:-2px; }
-        .gradient-text { background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .hero-text .tagline { font-size:1.3rem; color:var(--text-secondary); margin-bottom:3rem; line-height:1.8; max-width:600px; }
-        .cta-buttons { display:flex; gap:1rem; align-items:center; }
-        .btn { padding:1rem 2.5rem; border-radius:12px; text-decoration:none; font-weight:600; transition:all .4s; border:none; cursor:pointer; font-size:1rem; position:relative; overflow:hidden; }
-        .btn-primary { background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color:white; box-shadow:0 10px 40px var(--glow); }
-        .btn-primary::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition:left .5s; }
-        .btn-primary:hover::before { left:100%; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 50px var(--glow); }
-        .btn-secondary { background:transparent; color:var(--text-primary); border:2px solid var(--border); }
-        .btn-secondary:hover { border-color:var(--accent-primary); background: rgba(99, 102, 241, 0.1); transform: translateY(-3px); }
-
-        .hero-stats { display:grid; grid-template-columns:1fr; gap:1.5rem; }
-        .stat-card { background:var(--bg-secondary); padding:2rem; border-radius:16px; border:1px solid var(--border); position:relative; overflow:hidden; transition:all 0.4s; }
-        .stat-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); transform:scaleX(0); transition: transform 0.4s; }
-        .stat-card:hover::before { transform:scaleX(1); }
-        .stat-card:hover { transform: translateX(10px); border-color: rgba(99, 102, 241, 0.5); }
-        .stat-number { font-size:3rem; font-weight:800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:block; letter-spacing:-2px; }
-        .stat-label { color:var(--text-secondary); font-size:0.95rem; margin-top:0.5rem; font-weight:500; }
-
-        section { padding:8rem 0; position:relative; }
-        .section-header { margin-bottom:5rem; }
-        .section-label { display:inline-block; padding:0.4rem 1rem; background: rgba(99, 102, 241, 0.1); border:1px solid rgba(99, 102, 241, 0.3); border-radius:50px; color:var(--accent-primary); font-size:0.8rem; font-weight:600; margin-bottom:1.5rem; letter-spacing:1px; text-transform:uppercase; }
-        .section-title { font-size:3rem; font-weight:800; margin-bottom:1rem; letter-spacing:-1px; }
-        .section-subtitle { color:var(--text-secondary); font-size:1.2rem; max-width:600px; }
-
-        .skills-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:1.5rem; }
-        .skill-card { background:var(--bg-secondary); padding:2rem 1.5rem; border-radius:16px; border:1px solid var(--border); text-align:center; transition:all 0.4s; position:relative; overflow:hidden; }
-        .skill-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); transform:scaleX(0); transition: transform 0.4s; }
-        .skill-card:hover { transform: translateY(-10px); border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2); }
-        .skill-card:hover::before { transform:scaleX(1); }
-        .skill-icon { font-size:2.5rem; margin-bottom:1rem; filter:grayscale(100%); transition:filter 0.4s; }
-        .skill-card:hover .skill-icon { filter:grayscale(0%); }
-        .skill-name { font-weight:600; color:var(--text-primary); font-size:1rem; }
-
-        .experience-timeline { position:relative; padding-left:3rem; }
-        .experience-timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary)); }
-        .experience-card { background:var(--bg-secondary); padding:3rem; border-radius:20px; border:1px solid var(--border); margin-bottom:2rem; position:relative; transition:all 0.4s; }
-        .experience-card::before { content:''; position:absolute; left:-3.5rem; top:3rem; width:14px; height:14px; background:var(--accent-primary); border-radius:50%; border:3px solid var(--bg-primary); box-shadow: 0 0 20px var(--glow); }
-        .experience-card:hover { transform: translateX(10px); border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
-        .experience-header { display:flex; justify-content:space-between; align-items:start; margin-bottom:2rem; }
-        .experience-title { font-size:1.8rem; font-weight:700; color:var(--text-primary); margin-bottom:0.5rem; }
-        .experience-company { color:var(--accent-primary); font-size:1.2rem; font-weight:600; }
-        .experience-date { color:var(--text-tertiary); font-size:0.9rem; padding:0.5rem 1rem; background: rgba(99, 102, 241, 0.1); border-radius:8px; }
-        .experience-highlights { list-style:none; display:grid; gap:1rem; }
-        .experience-highlights li { padding-left:2rem; position:relative; color:var(--text-secondary); line-height:1.7; }
-        .experience-highlights li::before { content: "→"; position:absolute; left:0; color:var(--accent-primary); font-weight:700; font-size:1.2rem; }
-
-        .projects-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:2rem; }
-        .project-card { background:var(--bg-secondary); border-radius:20px; border:1px solid var(--border); overflow:hidden; transition:all 0.4s; position:relative; }
-        .project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); transform:scaleX(0); transition: transform 0.4s; }
-        .project-card:hover { transform: translateY(-10px); border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 30px 80px rgba(99, 102, 241, 0.2); }
-        .project-card:hover::before { transform:scaleX(1); }
-        .project-content { padding:2.5rem; }
-        .project-header { display:flex; justify-content:space-between; align-items:start; margin-bottom:1.5rem; }
-        .project-title { font-size:1.5rem; font-weight:700; margin-bottom:0.5rem; }
-        .project-icon { font-size:2rem; opacity:0.5; }
-        .project-description { color:var(--text-secondary); margin-bottom:2rem; line-height:1.8; }
-        .project-impact { display:inline-block; padding:0.5rem 1rem; background: rgba(34, 197, 94, 0.1); color:#22c55e; border-radius:8px; font-size:0.85rem; font-weight:600; margin-bottom:1.5rem; }
-        .project-tags { display:flex; flex-wrap:wrap; gap:0.75rem; }
-        .tag { background: rgba(99, 102, 241, 0.1); color:var(--accent-primary); padding:0.5rem 1rem; border-radius:8px; font-size:0.85rem; font-weight:500; border:1px solid rgba(99, 102, 241, 0.2); }
-
-        .contact-content { max-width:800px; margin:0 auto; text-align:center; }
-        .contact-text { font-size:1.2rem; color:var(--text-secondary); margin-bottom:3rem; line-height:1.8; }
-        .contact-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:1.5rem; margin-top:3rem; }
-        .contact-card { display:flex; align-items:center; gap:1rem; padding:2rem; background:var(--bg-secondary); border:1px solid var(--border); border-radius:16px; text-decoration:none; color:var(--text-primary); transition:all 0.4s; position:relative; overflow:hidden; }
-        .contact-card::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent); transition:left 0.5s; }
-        .contact-card:hover::before { left:100%; }
-        .contact-card:hover { transform: translateY(-5px); border-color:var(--accent-primary); box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2); }
-        .contact-icon { font-size:1.8rem; width:60px; height:60px; display:flex; align-items:center; justify-content:center; background: rgba(99, 102, 241, 0.1); border-radius:12px; flex-shrink:0; }
-        .contact-info { text-align:left; }
-        .contact-label { font-size:0.85rem; color:var(--text-tertiary); margin-bottom:0.25rem; }
-        .contact-value { font-weight:600; font-size:1rem; }
-
-        footer { background:var(--bg-secondary); border-top:1px solid var(--border); padding:3rem 0; text-align:center; color:var(--text-tertiary); }
-        .footer-content { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
-        .footer-links { display:flex; gap:2rem; }
-        .footer-links a { color:var(--text-secondary); text-decoration:none; transition:color 0.3s; }
-        .footer-links a:hover { color:var(--accent-primary); }
-
-        @media (max-width:1024px) { .hero-content { grid-template-columns:1fr; gap:3rem; } .projects-grid { grid-template-columns:1fr; } }
-        @media (max-width:768px) {
-            .hero-text h1 { font-size:3rem; } .section-title { font-size:2rem; } .nav-links { gap:1.5rem; }
-            .contact-grid { grid-template-columns:1fr; } .experience-timeline { padding-left:2rem; } .footer-content { flex-direction:column; text-align:center; }
+        .grid-overlay{
+            position:fixed; inset:0; z-index:-1;
+            background-image:
+                linear-gradient(rgba(39,39,42,0.14) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(39,39,42,0.14) 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.12;
+            pointer-events: none;
         }
-        html { scroll-behavior: smooth; }
+
+        /* ---------- NAVBAR ---------- */
+        nav{
+            height: var(--nav-height);
+            position:fixed;
+            top:0; left:0; right:0;
+            display:flex;
+            align-items:center;
+            width:100%;
+            background: #070707;
+            border-bottom:1px solid var(--border);
+            z-index:1200;
+            transition: box-shadow .25s ease;
+        }
+
+        nav.scrolled { box-shadow: 0 6px 30px rgba(0,0,0,0.6); }
+
+        nav .container{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 2rem;
+            width: 100%;
+        }
+
+        .logo{
+            display:inline-block;
+            font-weight:800;
+            font-size:1rem;
+            letter-spacing:-0.2px;
+            background: linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            flex-shrink: 0;
+        }
+
+        .nav-links{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:2.5rem;
+            list-style:none;
+        }
+
+        .nav-links li{ display:inline-block; }
+
+        .nav-links a{
+            color:var(--text-secondary);
+            text-decoration:none;
+            font-size:0.95rem;
+            font-weight:500;
+            padding:6px 8px;
+            border-radius:6px;
+            transition: color .18s ease, background .18s ease;
+            outline:none;
+            display:inline-block;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus { color:var(--text-primary); outline:none; }
+
+        .nav-links a::after{
+            content:'';
+            display:block;
+            height:2px;
+            width:0;
+            background:var(--accent-primary);
+            transition: width .22s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width:100%; }
+
+        .nav-links a.active { color:var(--text-primary); }
+
+        /* Nav CTA button (specific overrides) */
+        .nav-links .btn {
+            padding:0.45rem 1rem;
+            font-size:0.95rem;
+            border-radius:10px;
+            line-height:1;
+            position:relative;
+            overflow:visible;
+        }
+        .nav-links .btn.btn-primary {
+            background: linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            color:#fff;
+            box-shadow: 0 6px 18px rgba(99,102,241,0.12);
+        }
+        .nav-links .btn.btn-primary::before { display:none !important; }
+        .nav-links .btn.btn-primary::after { display:none !important; }
+
+        /* ---------- HERO ---------- */
+        .hero{
+            min-height: calc(100vh - var(--nav-height));
+            display:flex;
+            align-items:center;
+            position:relative;
+            padding-top:6px;
+        }
+
+        .hero-content{
+            display:grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap:5.5rem;
+            align-items:center;
+            width:100%;
+        }
+
+        .hero-text{ animation: fadeInUp .9s ease-out; }
+        @keyframes fadeInUp{ from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+        .hero-label{
+            display:inline-block;
+            padding:0.45rem 0.9rem;
+            background: rgba(99,102,241,0.08);
+            border:1px solid rgba(99,102,241,0.14);
+            border-radius:999px;
+            color:var(--accent-primary);
+            font-weight:600;
+            font-size:0.82rem;
+            margin-bottom:1.6rem;
+        }
+
+        .hero-text h1{
+            font-size:4rem;
+            line-height:1.15;
+            font-weight:800;
+            margin-bottom:1.2rem;
+            letter-spacing:-1.8px;
+        }
+
+        .gradient-text{
+            background: linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            display: inline-block;
+        }
+
+        .tagline{
+            color:var(--text-secondary);
+            font-size:1.05rem;
+            max-width:720px;
+            line-height:1.7;
+            margin-bottom:2.4rem;
+        }
+
+        .cta-buttons{ display:flex; gap:1rem; align-items:center; }
+
+        /* hero CTA buttons - remove underline */
+        .cta-buttons a,
+        .hero .btn-primary,
+        .hero .btn-secondary{
+            text-decoration:none;
+        }
+
+        /* keep full hero button sheen but scoped to .hero .btn-primary only */
+        .hero .btn-primary{
+            background: linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            color:#fff;
+            padding:0.9rem 1.8rem;
+            border-radius:12px;
+            box-shadow: 0 14px 40px var(--glow);
+            position:relative;
+            overflow:hidden;
+        }
+        .hero .btn-primary::before{
+            content:'';
+            position:absolute;
+            top:0; left:-120%;
+            width:100%; height:100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+            transition:left .45s;
+        }
+        .hero .btn-primary:hover::before { left:120%; }
+        .hero .btn-primary:hover { transform:translateY(-3px); }
+
+        .btn-secondary{
+            background:transparent;
+            color:var(--text-primary);
+            border:2px solid var(--border);
+            padding:0.82rem 1.6rem;
+            border-radius:12px;
+        }
+
+        /* ---------- Stats ---------- */
+        .hero-stats{ display:grid; gap:1.5rem; grid-template-columns:1fr; }
+
+        .stat-card{
+            background:var(--bg-secondary);
+            padding:1.8rem;
+            border-radius:14px;
+            border:1px solid var(--border);
+            transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        .stat-card:hover{ transform: translateX(6px); border-color: rgba(99,102,241,0.38); box-shadow: 0 18px 50px rgba(0,0,0,0.28); }
+
+        .stat-number{
+            font-size:2.6rem;
+            font-weight:800;
+            display:block;
+            background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            margin-bottom:0.4rem;
+        }
+
+        .stat-label{ color:var(--text-secondary); font-size:0.95rem; }
+
+        /* ---------- Sections ---------- */
+        section{ padding:6.5rem 0; position:relative; }
+        .section-header{ margin-bottom:3.5rem; }
+        .section-label{ display:inline-block; padding:0.35rem 0.9rem; border-radius:999px; border:1px solid rgba(99,102,241,0.14); color:var(--accent-primary); font-weight:600; text-transform:uppercase; font-size:0.78rem; }
+        .section-title{ font-size:2.4rem; font-weight:800; margin-top:0.8rem; }
+        .section-subtitle{ color:var(--text-secondary); margin-top:0.6rem; max-width:700px; }
+
+        /* Skills */
+        .skills-grid{ display:grid; gap:1.25rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
+        .skill-card{ background:var(--bg-secondary); padding:1.6rem; border-radius:12px; border:1px solid var(--border); text-align:center; transition:transform .28s ease; }
+        .skill-card:hover{ transform:translateY(-8px); box-shadow:0 20px 50px rgba(99,102,241,0.06); }
+
+        /* Experience */
+        .experience-timeline{ position:relative; padding-left:2.25rem; }
+        .experience-timeline::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary)); }
+        .experience-card{ background:var(--bg-secondary); padding:1.8rem; border-radius:12px; border:1px solid var(--border); margin-bottom:1.1rem; }
+
+        /* Projects */
+        .projects-grid{ display:grid; gap:1.4rem; grid-template-columns: repeat(2,1fr); }
+        .project-card{ background:var(--bg-secondary); border-radius:12px; border:1px solid var(--border); transition: transform .28s ease, box-shadow .28s; padding:1.6rem; }
+        .project-card:hover{ transform:translateY(-8px); box-shadow:0 30px 60px rgba(99,102,241,0.06); }
+
+        /* Contact */
+        .contact-grid{ 
+            display:grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap:1.25rem; 
+            margin-top:1.5rem; 
+        }
+        .contact-card{ 
+            display:flex; 
+            gap:1rem; 
+            align-items:center; 
+            padding:1.2rem; 
+            border-radius:12px; 
+            background:var(--bg-secondary); 
+            border:1px solid var(--border); 
+            transition: transform .24s; 
+            text-decoration:none; 
+            color:inherit; 
+        }
+        .contact-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(99,102,241,0.05); }
+
+        .contact-icon{ 
+            width:56px; 
+            height:56px; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            border-radius:10px; 
+            background: rgba(99,102,241,0.06); 
+            font-size:1.25rem; 
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .contact-info > div:last-child {
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        footer{ padding:2.75rem 0; background:var(--bg-secondary); border-top:1px solid var(--border); color:var(--text-tertiary); }
+
+        /* responsive tweaks */
+        @media (max-width:1000px){
+            .hero-content{ grid-template-columns:1fr; gap:2rem; }
+            .projects-grid{ grid-template-columns:1fr; }
+            .nav-links{ gap:1.5rem; }
+        }
+        @media (max-width:700px){
+            :root{ --nav-height: 56px; }
+            body{ padding-top: var(--nav-height); }
+            nav{ height:var(--nav-height); }
+            nav .container { padding: 0 1rem; }
+            .logo{ font-size:0.95rem; }
+            .hero-text h1{ font-size:2.2rem; line-height:1.2; }
+            .nav-links{ gap:1rem; }
+            .container{ padding:0 1rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* keyboard focus */
+        a:focus, button:focus {
+            outline: 3px solid rgba(99,102,241,0.12);
+            outline-offset:3px;
+        }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-gradient"></div>
-    <div class="grid-overlay"></div>
+    <!-- background layers -->
+    <div class="bg-gradient" aria-hidden="true"></div>
+    <div class="grid-overlay" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
+    <!-- NAV -->
+    <nav id="navbar" role="navigation" aria-label="Main">
         <div class="container">
-            <div class="logo">DK.</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact" class="btn btn-primary" style="padding:0.7rem 1.5rem;">Contact</a></li>
+            <div class="logo">Debabrata Kuiry</div>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a role="menuitem" href="#home">Home</a></li>
+                <li role="none"><a role="menuitem" href="#skills">Skills</a></li>
+                <li role="none"><a role="menuitem" href="#experience">Experience</a></li>
+                <li role="none"><a role="menuitem" href="#projects">Projects</a></li>
+                <li role="none"><a role="menuitem" href="#contact" class="btn btn-primary">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <span class="hero-label">AVAILABLE FOR OPPORTUNITIES</span>
-                    <h1>
-                        Hi, I'm <span class="gradient-text">Debabrata</span><br>
-                        Data & Automation Engineer
-                    </h1>
-                    <p class="tagline">Building intelligent systems that make data work harder — so people don't have to. Specializing in AI, Machine Learning, and automated analytics solutions.</p>
-                    <div class="cta-buttons">
-                        <a href="#contact" class="btn btn-primary">Let's Connect</a>
-                        <a href="#projects" class="btn btn-secondary">View Projects</a>
+    <!-- HERO -->
+    <main>
+        <section id="home" class="hero" aria-label="Hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span class="hero-label">AVAILABLE FOR OPPORTUNITIES</span>
+                        <h1>Hi, I'm <span class="gradient-text">Debabrata,</span><br>Data & Automation Engineer</h1>
+                        <p class="tagline">Building intelligent systems that make data work harder — so people don't have to. Specializing in AI, Machine Learning, and automated analytics solutions.</p>
+                        <div class="cta-buttons">
+                            <a class="btn btn-primary" href="#contact">Let's Connect</a>
+                            <a class="btn btn-secondary" href="#projects">View Projects</a>
+                        </div>
                     </div>
+
+                    <aside class="hero-stats" aria-hidden="false">
+                        <div class="stat-card">
+                            <span class="stat-number">6+</span>
+                            <div class="stat-label">End-to-End Analytics Solutions</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <span class="stat-number">30%</span>
+                            <div class="stat-label">Productivity Enhancement</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <span class="stat-number">50%</span>
+                            <div class="stat-label">Response Time Improvement</div>
+                        </div>
+                    </aside>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <span class="stat-number">6+</span>
-                        <span class="stat-label">End-to-End Analytics Solutions</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">30%</span>
-                        <span class="stat-label">Productivity Enhancement</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">50%</span>
-                        <span class="stat-label">Response Time Improvement</span>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Technical Expertise</span>
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <p class="section-subtitle">Core competencies in data engineering, machine learning, and automation</p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card"><div style="font-size:1.6rem">🐍</div><div style="margin-top:10px;font-weight:600">Python</div></div>
+                    <div class="skill-card"><div style="font-size:1.6rem">🤖</div><div style="margin-top:10px;font-weight:600">Machine Learning</div></div>
+                    <div class="skill-card"><div style="font-size:1.6rem">🧠</div><div style="margin-top:10px;font-weight:600">Artificial Intelligence</div></div>
+                    <div class="skill-card"><div style="font-size:1.6rem">📊</div><div style="margin-top:10px;font-weight:600">Power BI</div></div>
+                    <div class="skill-card"><div style="font-size:1.6rem">🗄️</div><div style="margin-top:10px;font-weight:600">MySQL</div></div>
+                    <div class="skill-card"><div style="font-size:1.6rem">🌐</div><div style="margin-top:10px;font-weight:600">Web Development</div></div>
+                    <div class="skill-card"><div style="font-size:1.6rem">📈</div><div style="margin-top:10px;font-weight:600">Data Visualization</div></div>
+                    <div class="skill-card"><div style="font-size:1.6rem">⚙️</div><div style="margin-top:10px;font-weight:600">Workflow Automation</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Professional Journey</span>
+                    <h2 class="section-title">Work Experience</h2>
+                    <p class="section-subtitle">Building impactful data solutions in real-world environments</p>
+                </div>
+
+                <div class="experience-timeline">
+                    <div class="experience-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+                            <div>
+                                <div style="font-weight:700;font-size:1.05rem">Data Analyst Intern</div>
+                                <div style="color:var(--accent-primary);margin-top:6px">Elevate Labs · Bengaluru</div>
+                            </div>
+                            <div style="color:var(--text-secondary);background:rgba(99,102,241,0.04);padding:6px 10px;border-radius:8px;font-size:0.9rem">Sept - Oct 2025</div>
+                        </div>
+
+                        <ul style="color:var(--text-secondary);line-height:1.6;margin-left:12px">
+                            <li>Architected and deployed 6+ comprehensive data analytics solutions including real-time sentiment analysis systems and interactive Power BI dashboards.</li>
+                            <li>Engineered automated data extraction pipelines, improving reporting efficiency and stakeholder productivity.</li>
+                            <li>Leveraged Python, Power BI and MySQL to streamline reporting workflows and reduce manual processing time.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Technical Expertise</span>
-                <h2 class="section-title">Skills & Technologies</h2>
-                <p class="section-subtitle">Core competencies in data engineering, machine learning, and automation</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
-                <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">Machine Learning</div></div>
-                <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-name">Artificial Intelligence</div></div>
-                <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">Power BI</div></div>
-                <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">MySQL</div></div>
-                <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">Web Development</div></div>
-                <div class="skill-card"><div class="skill-icon">📈</div><div class="skill-name">Data Visualization</div></div>
-                <div class="skill-card"><div class="skill-icon">⚙️</div><div class="skill-name">Workflow Automation</div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Professional Journey</span>
-                <h2 class="section-title">Work Experience</h2>
-                <p class="section-subtitle">Building impactful data solutions in real-world environments</p>
-            </div>
-            <div class="experience-timeline">
-                <div class="experience-card">
-                    <div class="experience-header">
-                        <div>
-                            <h3 class="experience-title">Data Analyst Intern</h3>
-                            <div class="experience-company">Elevate Labs · Bengaluru</div>
-                        </div>
-                        <div class="experience-date">Sept - Oct 2025</div>
-                    </div>
-                    <ul class="experience-highlights">
-                        <li>Architected and deployed 6+ comprehensive data analytics solutions including real-time sentiment analysis systems for Twitter and Reddit, interactive Power BI dashboards, and advanced sales analytics platforms</li>
-                        <li>Engineered automated data extraction pipelines and implemented advanced data cleaning protocols, achieving a 20% improvement in reporting efficiency and 30% enhancement in stakeholder productivity</li>
-                        <li>Leveraged Python, Power BI, MySQL, and data visualization frameworks to streamline reporting workflows, resulting in 25% reduction in manual processing time and enhanced data accuracy across multiple sources</li>
-                        <li>Developed and deployed machine learning models for sentiment analysis, delivering actionable insights that directly informed strategic business decisions and marketing initiatives</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section (continued/completed) -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Portfolio</span>
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Innovative solutions combining AI, data analytics, and automation</p>
-            </div>
-
-            <div class="projects-grid">
-                <!-- (existing cards you had) -->
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div><h3 class="project-title">Real-Time Twitter Sentiment Analysis</h3></div>
-                            <div class="project-icon">🐦</div>
-                        </div>
-                        <div class="project-impact">↑ 50% Response Time Improvement</div>
-                        <p class="project-description">Engineered a real-time sentiment monitoring system using Tweepy and TextBlob with seamless Power BI integration. Enabled instant public mood tracking and provided actionable insights that enhanced marketing strategy effectiveness.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Power BI</span><span class="tag">Real-Time</span>
-                        </div>
-                    </div>
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Portfolio</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Innovative solutions combining AI, data analytics, and automation</p>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div><h3 class="project-title">Reddit Sentiment Analyzer</h3></div>
-                            <div class="project-icon">📱</div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                            <div style="font-weight:700">Real-Time Twitter Sentiment Analysis</div>
+                            <div style="font-size:1.1rem">🐦</div>
                         </div>
-                        <div class="project-impact">↑ 40% Tracking Accuracy</div>
-                        <p class="project-description">Built a Python-based analyzer leveraging PRAW for subreddit scraping and TextBlob for sentiment classification. Delivered real-time insights for content moderation and community engagement optimization.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span><span class="tag">PRAW</span><span class="tag">TextBlob</span><span class="tag">CSV</span>
-                        </div>
+                        <div style="color:#22c55e;font-weight:600;margin-bottom:10px">↑ 50% Response Time Improvement</div>
+                        <p style="color:var(--text-secondary);margin-bottom:12px">Engineered a real-time sentiment monitoring system using Tweepy and TextBlob with Power BI integration.</p>
                     </div>
-                </div>
 
-                <!-- continue with more project cards (Car Rental / AI Website analyzer / Others) -->
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div><h3 class="project-title">Car Rental Management System</h3></div>
-                            <div class="project-icon">🚗</div>
+                    <div class="project-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                            <div style="font-weight:700">Reddit Sentiment Analyzer</div>
+                            <div style="font-size:1.1rem">📱</div>
                         </div>
-                        <div class="project-impact">↑ 40% Booking Efficiency</div>
-                        <p class="project-description">Full-stack web application for managing vehicle listings, bookings and customer data. Backend optimizations and automation reduced manual processing and boosted monthly rentals.</p>
-                        <div class="project-tags">
-                            <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">MySQL</span><span class="tag">Backend</span>
-                        </div>
+                        <div style="color:#22c55e;font-weight:600;margin-bottom:10px">↑ 40% Tracking Accuracy</div>
+                        <p style="color:var(--text-secondary);margin-bottom:12px">Built a Python-based analyzer leveraging PRAW and TextBlob for subreddit scraping and sentiment classification.</p>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div><h3 class="project-title">AI Website Sentiment Analyzer</h3></div>
-                            <div class="project-icon">🌐</div>
+                    <div class="project-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                            <div style="font-weight:700">Car Rental Management System</div>
+                            <div style="font-size:1.1rem">🚗</div>
                         </div>
-                        <div class="project-impact">Real-time Sentiment Evaluation</div>
-                        <p class="project-description">A Python-based scraper and sentiment pipeline using VADER and BERT-based models to extract and evaluate textual content from websites, with visualizations for sentiment distribution and trends.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span><span class="tag">NLP</span><span class="tag">BERT</span><span class="tag">Visualizations</span>
-                        </div>
+                        <div style="color:#22c55e;font-weight:600;margin-bottom:10px">↑ 40% Booking Efficiency</div>
+                        <p style="color:var(--text-secondary);margin-bottom:12px">Full-stack web application for vehicle listings, bookings and customer data using MySQL backend.</p>
                     </div>
-                </div>
 
-                <!-- Add one or two small utility projects / showcase -->
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div><h3 class="project-title">ETL & Automation Pipelines</h3></div>
-                            <div class="project-icon">🧩</div>
+                    <div class="project-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                            <div style="font-weight:700">AI Website Sentiment Analyzer</div>
+                            <div style="font-size:1.1rem">🌐</div>
                         </div>
-                        <div class="project-impact">↑ 25% Processing Speed</div>
-                        <p class="project-description">Designed automated ETL pipelines to extract, clean and load data across multiple sources, enabling faster reporting and more reliable downstream analytics.</p>
-                        <div class="project-tags">
-                            <span class="tag">ETL</span><span class="tag">Python</span><span class="tag">Automation</span><span class="tag">MySQL</span>
-                        </div>
+                        <div style="color:#22c55e;font-weight:600;margin-bottom:10px">Real-time Sentiment Evaluation</div>
+                        <p style="color:var(--text-secondary);margin-bottom:12px">A scraper + sentiment pipeline using VADER & BERT-based models with visualization outputs.</p>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div><h3 class="project-title">Power BI Dashboards</h3></div>
-                            <div class="project-icon">📊</div>
+                    <div class="project-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                            <div style="font-weight:700">ETL & Automation Pipelines</div>
+                            <div style="font-size:1.1rem">🧩</div>
                         </div>
-                        <div class="project-impact">Actionable Executive Insights</div>
-                        <p class="project-description">Created multiple interactive Power BI dashboards integrating Python outputs and live data sources to help stakeholders make data-driven decisions.</p>
-                        <div class="project-tags">
-                            <span class="tag">Power BI</span><span class="tag">Data Viz</span><span class="tag">Reporting</span>
+                        <div style="color:#22c55e;font-weight:600;margin-bottom:10px">↑ 25% Processing Speed</div>
+                        <p style="color:var(--text-secondary);margin-bottom:12px">Automated ETL flows to extract, clean and load data across multiple sources.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                            <div style="font-weight:700">Power BI Dashboards</div>
+                            <div style="font-size:1.1rem">📊</div>
                         </div>
+                        <div style="color:#22c55e;font-weight:600;margin-bottom:10px">Actionable Executive Insights</div>
+                        <p style="color:var(--text-secondary);margin-bottom:12px">Interactive dashboards combining Python outputs and live data sources for stakeholders.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">Open to internships & entry-level roles in Data Engineering, Machine Learning, and Data Analytics. Let's build something useful together.</p>
-            </div>
-
-            <div class="contact-content">
-                <p class="contact-text">Feel free to reach out — whether it's a potential opportunity, collaboration, or just to talk data & automation.</p>
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Get In Touch</span>
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">Open to internships & entry-level roles in Data Engineering, Machine Learning, and Data Analytics.</p>
+                </div>
 
                 <div class="contact-grid">
-                    <a class="contact-card" href="mailto:debabratakuiry2002@gmail.com" target="_blank" rel="noopener">
+                    <a class="contact-card" href="mailto:debabratakuiry2002@gmail.com" rel="noopener">
                         <div class="contact-icon">✉️</div>
                         <div class="contact-info">
-                            <div class="contact-label">Email</div>
-                            <div class="contact-value">debabratakuiry2002@gmail.com</div>
+                            <div style="font-size:0.85rem;color:var(--text-tertiary)">Email</div>
+                            <div style="font-weight:700">debabratakuiry2002@gmail.com</div>
                         </div>
                     </a>
 
                     <a class="contact-card" href="tel:+918637067507">
                         <div class="contact-icon">📞</div>
                         <div class="contact-info">
-                            <div class="contact-label">Phone</div>
-                            <div class="contact-value">+91 86370 67507</div>
+                            <div style="font-size:0.85rem;color:var(--text-tertiary)">Phone</div>
+                            <div style="font-weight:700">+91 86370 67507</div>
                         </div>
                     </a>
 
                     <a class="contact-card" href="https://www.linkedin.com/in/debabrata-kuiry" target="_blank" rel="noopener">
                         <div class="contact-icon">💼</div>
                         <div class="contact-info">
-                            <div class="contact-label">LinkedIn</div>
-                            <div class="contact-value">Debabrata Kuiry</div>
+                            <div style="font-size:0.85rem;color:var(--text-tertiary)">LinkedIn</div>
+                            <div style="font-weight:700">Debabrata Kuiry</div>
                         </div>
                     </a>
 
                     <a class="contact-card" href="https://github.com/cyrax3589" target="_blank" rel="noopener">
                         <div class="contact-icon">🐙</div>
                         <div class="contact-info">
-                            <div class="contact-label">GitHub</div>
-                            <div class="contact-value">cyrax3589</div>
+                            <div style="font-size:0.85rem;color:var(--text-tertiary)">GitHub</div>
+                            <div style="font-weight:700">cyrax3589</div>
                         </div>
                     </a>
                 </div>
 
-                <p style="margin-top:1.5rem; color:var(--text-tertiary); font-size:0.95rem;">
-                    Location: Bengaluru, 560060
-                </p>
+                <p style="margin-top:1.2rem;color:var(--text-tertiary)">Location: Bengaluru, 560060</p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <div class="container footer-content">
+        <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
             <div>
-                <div style="font-weight:700; color:var(--text-primary); margin-bottom:6px;">Debabrata Kuiry</div>
-                <div style="font-size:0.95rem;">Aspiring Data & Automation Engineer · AI & Machine Learning Enthusiast</div>
+                <div style="font-weight:800;color:var(--text-primary)">Debabrata Kuiry</div>
+                <div style="font-size:0.95rem;color:var(--text-tertiary)">Aspiring Data & Automation Engineer</div>
             </div>
-
-            <div class="footer-links" aria-hidden="true">
-                <a href="#projects">Projects</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
+            <div style="color:var(--text-tertiary)">
+                <a href="#projects" style="color:inherit;text-decoration:none;margin-right:12px">Projects</a>
+                <a href="#experience" style="color:inherit;text-decoration:none;margin-right:12px">Experience</a>
+                <a href="#contact" style="color:inherit;text-decoration:none">Contact</a>
             </div>
         </div>
-
-        <div style="margin-top:1.5rem; color:var(--text-tertiary); font-size:0.9rem;">
-            © <span id="year"></span> Debabrata Kuiry · Built with passion for data & automation
-        </div>
+        <div style="margin-top:12px;text-align:center;color:var(--text-tertiary)">© <span id="year"></span> Debabrata Kuiry</div>
     </footer>
 
-    <!-- Light JS: navbar scroll, active links -->
+    <!-- JS: active link, scroll offset and navbar shadow -->
     <script>
         (function(){
             const navbar = document.getElementById('navbar');
             const links = Array.from(document.querySelectorAll('.nav-links a'));
             const yearEl = document.getElementById('year');
-            yearEl.textContent = new Date().getFullYear();
+            if(yearEl) yearEl.textContent = new Date().getFullYear();
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 30) navbar.classList.add('scrolled');
-                else navbar.classList.remove('scrolled');
-
-                // highlight corresponding link
-                const fromTop = window.scrollY + 120;
-                links.forEach(link => {
-                    const hash = link.getAttribute('href');
-                    if (!hash || !hash.startsWith('#')) return;
-                    const section = document.querySelector(hash);
-                    if (!section) return;
-                    const top = section.offsetTop;
-                    const bottom = top + section.offsetHeight;
-                    if (fromTop >= top && fromTop < bottom) link.style.color = 'var(--text-primary)';
-                    else link.style.color = 'var(--text-secondary)';
+            function updateActive(){
+                const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 64;
+                const fromTop = window.scrollY + navH + 12;
+                links.forEach(a=>{
+                    const href = a.getAttribute('href');
+                    if(!href || !href.startsWith('#')) return;
+                    const sec = document.querySelector(href);
+                    if(!sec) return;
+                    const top = sec.offsetTop;
+                    const bottom = top + sec.offsetHeight;
+                    if(fromTop >= top && fromTop < bottom) a.classList.add('active');
+                    else a.classList.remove('active');
                 });
-            });
+            }
 
-            // smooth scroll offset fix for anchor links (so fixed navbar doesn't cover)
+            window.addEventListener('scroll', ()=>{
+                if(window.scrollY > 20) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+                updateActive();
+            }, { passive:true });
+
+            // anchor clicks: offset scroll so navbar doesn't cover target
             document.querySelectorAll('a[href^="#"]').forEach(a=>{
                 a.addEventListener('click', function(e){
                     const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
+                    if(target){
                         e.preventDefault();
-                        const y = target.getBoundingClientRect().top + window.pageYOffset - 70;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 64;
+                        const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+                        window.scrollTo({ top: top, behavior:'smooth' });
                     }
                 });
             });
+
+            // init highlight
+            updateActive();
         })();
     </script>
 </body>
