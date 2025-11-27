@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Debabrata Kuiry — Portfolio</title>
+  <meta name="description" content="Debabrata Kuiry — Student & Developer. Projects, skills and contact." />
+  <link rel="icon" href="data:," />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#6ee7b7;
+      --glass: rgba(255,255,255,0.03);
+      --maxw:1000px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:
+        radial-gradient(1000px 400px at 10% 10%, rgba(110,231,183,0.05), transparent 10%),
+        linear-gradient(180deg,#071127 0%, #08121a 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--maxw)}
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .logo{
+      width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#34d399,#06b6d4);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#012;
+      box-shadow:0 6px 18px rgba(3,7,18,0.6);
+    }
+    h1{font-size:20px;margin:0}
+    .nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-size:14px}
+    main{display:grid;grid-template-columns:1fr;gap:20px}
+    .hero{
+      display:flex;gap:20px;align-items:center;background:var(--glass);padding:20px;border-radius:14px;
+      box-shadow:0 6px 18px rgba(2,6,12,0.6);
+    }
+    .hero-left{flex:1}
+    .tagline{color:var(--accent);font-weight:700;font-size:18px;margin-bottom:6px}
+    .lead{font-size:28px;margin:0 0 6px 0}
+    .lead small{display:block;font-size:14px;color:var(--muted);margin-top:8px}
+    .about{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      padding:18px;border-radius:12px;
+      text-align:justify;color:#d8e8f3;line-height:1.55;
+    }
+    .actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;
+      color:var(--accent);text-decoration:none;font-weight:600;font-size:14px;
+    }
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .card{background:var(--card);padding:14px;border-radius:12px;min-height:80px}
+    .card h3{margin:0 0 6px 0;font-size:16px}
+    .skills{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:13px;color:var(--muted)}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px;padding:12px}
+    a.link{color:var(--accent);text-decoration:none}
+    /* responsive */
+    @media (max-width:820px){
+      .grid{grid-template-columns:1fr}
+      .hero{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">DK</div>
+        <div>
+          <h1>Debabrata Kuiry</h1>
+          <div style="color:var(--muted);font-size:13px">Computer Science • Student & Developer</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="intro">
+        <div class="hero-left">
+          <div class="tagline">I build practical web tools & clean UIs</div>
+          <h2 class="lead" id="intro">Hi — I'm Debabrata. I turn ideas into simple, useful web apps.<small>Student, learner, and hands-on developer focused on clean code and fast results.</small></h2>
+
+          <div class="about" role="article">
+            <strong>About me —</strong> I’m a third-year Computer Science student who enjoys building small web apps and tools that solve real problems. I focus on readable code, pragmatic design, and learning new technologies fast. I like turning class projects into portfolio pieces and improving them iteratively.
+          </div>
+
+          <div class="actions" aria-hidden="false">
+            <a class="btn" href="#projects">View projects</a>
+            <a class="btn" href="resume.pdf" download>Download resume</a>
+            <a class="btn" href="mailto:your-email@example.com">Email me</a>
+          </div>
+        </div>
+
+        <div style="width:280px">
+          <div class="card" style="display:flex;flex-direction:column;gap:8px">
+            <h3>Resume summary</h3>
+            <div style="color:var(--muted);font-size:14px;line-height:1.5">
+              Third-year B.E. Computer Science student with hands-on experience building web apps using HTML, CSS, JavaScript and basic backend with MySQL. Strong problem-solver, quick learner, and motivated to intern and contribute to real projects.
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h3>Quick contact</h3>
+            <div style="color:var(--muted);font-size:14px">
+              Email: <a class="link" href="mailto:your-email@example.com">your-email@example.com</a><br/>
+              LinkedIn: <a class="link" href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 style="font-size:18px;margin:8px 0 12px 0">Projects</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Car Rental System (Mini project)</h3>
+            <div style="color:var(--muted);font-size:14px">Flask + MySQL backend, HTML/CSS/JS frontend. Features: booking, admin panel, and user authentication. (Link / repo)</div>
+          </div>
+          <div class="card">
+            <h3>Portfolio Website</h3>
+            <div style="color:var(--muted);font-size:14px">Static site deployed on GitHub Pages. Responsive, simple CMS-free design. (This site)</div>
+          </div>
+          <div class="card">
+            <h3>YouTube Playlist Downloader (WIP)</h3>
+            <div style="color:var(--muted);font-size:14px">Standalone app plan: GUI .exe, progress bar, format selection, and ffmpeg conversion.</div>
+          </div>
+          <div class="card">
+            <h3>DSA Practice</h3>
+            <div style="color:var(--muted);font-size:14px">Problems solved across arrays, trees and dynamic programming — used for interview prep and IA exams.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" style="margin-top:18px">
+        <h2 style="font-size:18px;margin:8px 0 12px 0">Skills</h2>
+        <div class="card">
+          <div class="skills">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Flask</span>
+            <span class="pill">MySQL</span>
+            <span class="pill">Git & GitHub</span>
+            <span class="pill">Python</span>
+            <span class="pill">DSA</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:18px">
+        <h2 style="font-size:18px;margin:8px 0 12px 0">Contact</h2>
+        <div class="card">
+          <p style="color:var(--muted)">Want to collaborate or see code? Send a quick message — I usually reply within a day.</p>
+          <p><a class="btn" href="mailto:your-email@example.com">Email me</a></p>
+        </div>
+      </section>
+
+      <footer>
+        Built with ❤️ — Debabrata Kuiry · <a class="link" href="https://github.com/your-github-username" target="_blank">GitHub</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
