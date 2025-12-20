@@ -68,7 +68,7 @@
             </div>
         </section>
 
-        <!-- SKILLS -->
+        <!-- SKILLS (dynamic from skills.json) -->
         <section id="skills">
             <div class="container">
                 <div class="section-header">
@@ -77,16 +77,8 @@
                     <p class="section-subtitle">Core competencies in data engineering, machine learning, and automation</p>
                 </div>
 
-                <div class="skills-grid">
-                    <div class="skill-card"><div style="font-size:1.6rem">🐍</div><div style="margin-top:10px;font-weight:600">Python</div></div>
-                    <div class="skill-card"><div style="font-size:1.6rem">🤖</div><div style="margin-top:10px;font-weight:600">Machine Learning</div></div>
-                    <div class="skill-card"><div style="font-size:1.6rem">🧠</div><div style="margin-top:10px;font-weight:600">Artificial Intelligence</div></div>
-                    <div class="skill-card"><div style="font-size:1.6rem">📊</div><div style="margin-top:10px;font-weight:600">Power BI</div></div>
-                    <div class="skill-card"><div style="font-size:1.6rem">🗄️</div><div style="margin-top:10px;font-weight:600">MySQL</div></div>
-                    <div class="skill-card"><div style="font-size:1.6rem">🌐</div><div style="margin-top:10px;font-weight:600">Web Development</div></div>
-                    <div class="skill-card"><div style="font-size:1.6rem">📈</div><div style="margin-top:10px;font-weight:600">Data Visualization</div></div>
-                    <div class="skill-card"><div style="font-size:1.6rem">⚙️</div><div style="margin-top:10px;font-weight:600">Workflow Automation</div></div>
-                </div>
+                <!-- Skills are injected here by main.js from data/skills.json -->
+                <div class="skills-grid" id="skills-grid"></div>
             </div>
         </section>
 

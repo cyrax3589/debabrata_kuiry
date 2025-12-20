@@ -278,23 +278,56 @@ section{ padding:6.5rem 0; position:relative; }
 .section-title{ font-size:2.4rem; font-weight:800; margin-top:0.8rem; }
 .section-subtitle{ color:var(--text-secondary); margin-top:0.6rem; max-width:700px; }
 
-/* Skills */
+/* Skills (logo card style) */
 .skills-grid{
     display:grid;
-    gap:1.25rem;
+    gap:1.6rem;
     grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
 }
+
 .skill-card{
     background:var(--bg-secondary);
-    padding:1.6rem;
-    border-radius:12px;
+    padding:1.4rem 1.2rem 1.1rem;
+    border-radius:14px;
     border:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    gap:0.9rem;
     text-align:center;
-    transition:transform .28s ease;
+    transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease, background .24s ease;
 }
+
 .skill-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 20px 50px rgba(99,102,241,0.06);
+    transform:translateY(-6px);
+    box-shadow:0 20px 50px rgba(99,102,241,0.12);
+    border-color:rgba(99,102,241,0.45);
+    background:radial-gradient(circle at top, rgba(99,102,241,0.12), var(--bg-secondary) 55%);
+}
+
+.skill-logo-wrap{
+    width:56px;
+    height:56px;
+    border-radius:18px;
+    background:rgba(15,15,15,0.95);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.skill-logo-wrap img{
+    width:70%;
+    height:70%;
+    object-fit:contain;
+}
+
+.skill-name{
+    font-weight:600;
+    font-size:0.9rem;
+    letter-spacing:0.02em;
 }
 
 /* Experience */
@@ -336,21 +369,73 @@ section{ padding:6.5rem 0; position:relative; }
     border-radius:999px;
 }
 
+/* PowerPoint-style project cards */
 .project-card{
     background:var(--bg-secondary);
-    border-radius:12px;
+    border-radius:18px;
     border:1px solid var(--border);
-    padding:1.6rem;
-    flex:0 0 320px;
+    padding:1.8rem 1.6rem 1.6rem;
+    flex:0 0 340px;
+    min-height:380px;
     scroll-snap-align:start;
+    display:flex;
+    flex-direction:column;
+    gap:0.9rem;
     transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
 .project-card:hover{
     transform:translateY(-8px);
-    box-shadow:0 30px 60px rgba(99,102,241,0.06);
-    border-color:rgba(99,102,241,0.45);
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    border-color:rgba(99,102,241,0.55);
 }
 
+/* logo box top-centre */
+.project-logo-wrapper{
+    width:96px;
+    height:96px;
+    border-radius:26px;
+    background:rgba(15,15,15,0.96);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    box-shadow:0 16px 40px rgba(0,0,0,0.65);
+    margin-bottom:10px;
+    flex-shrink:0;
+}
+.project-logo-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* title ~20px look */
+.project-title{
+    font-weight:700;
+    font-size:1.1rem;
+    line-height:1.35;
+    text-align:center;
+    word-wrap:break-word;
+}
+
+/* description ~14px look */
+.description-text{
+    color:var(--text-secondary);
+    margin-bottom:14px;
+    font-size:0.88rem;
+    line-height:1.7;
+    text-align:justify;
+}
+
+/* View on GitHub link */
+.project-link{
+    color:var(--accent-primary);
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+}
+
+/* carousel controls */
 .carousel-nav{
     position:absolute;
     top:-3.0rem;
@@ -376,13 +461,6 @@ section{ padding:6.5rem 0; position:relative; }
     background:rgba(39,39,42,0.9);
     transform:translateY(-1px);
     border-color:rgba(99,102,241,0.6);
-}
-
-/* Justified description text */
-.description-text{
-    color:var(--text-secondary);
-    margin-bottom:12px;
-    text-align:justify;
 }
 
 /* Contact */
@@ -446,7 +524,7 @@ footer{
     .nav-links{ gap:1rem; }
     .container{ padding:0 1rem; }
     .contact-grid { grid-template-columns: 1fr; }
-    .project-card{ flex:0 0 80%; }
+    .project-card{ flex:0 0 85%; min-height:360px; }
 }
 
 /* keyboard focus */

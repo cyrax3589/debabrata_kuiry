@@ -1,42 +1,34 @@
 [
   {
     "name": "Python",
-    "icon": "🐍",
-    "level": 90
+    "file": "python.png"
   },
   {
     "name": "Machine Learning",
-    "icon": "🤖",
-    "level": 85
+    "file": "machine-learning.png"
   },
   {
     "name": "Artificial Intelligence",
-    "icon": "🧠",
-    "level": 80
+    "file": "ai.png"
   },
   {
     "name": "Power BI",
-    "icon": "📊",
-    "level": 88
+    "file": "powerbi.png"
   },
   {
     "name": "MySQL",
-    "icon": "🗄️",
-    "level": 82
+    "file": "mysql.png"
   },
   {
-    "name": "Web Development",
-    "icon": "🌐",
-    "level": 87
+    "name": "Html",
+    "file": "html.png"
   },
   {
-    "name": "Data Visualization",
-    "icon": "📈",
-    "level": 86
+    "name": "Css",
+    "file": "css.png"
   },
   {
     "name": "Workflow Automation",
-    "icon": "⚙️",
-    "level": 83
+    "file": "automation.png"
   }
 ]
