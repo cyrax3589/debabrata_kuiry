@@ -4,31 +4,58 @@
     "file": "python.png"
   },
   {
-    "name": "Machine Learning",
-    "file": "machine-learning.png"
+    "name": "C",
+    "file": "c.png"
   },
   {
-    "name": "Artificial Intelligence",
-    "file": "ai.png"
+    "name": "C++",
+    "file": "cpp.png"
   },
   {
-    "name": "Power BI",
-    "file": "powerbi.png"
+    "name": "Java",
+    "file": "java.png"
+  },
+  {
+    "name": "JavaScript",
+    "file": "javascript.png"
+  },
+  {
+    "name": "HTML",
+    "file": "html.png"
+  },
+  {
+    "name": "CSS",
+    "file": "css.png"
+  },
+
+  {
+    "name": "SQL",
+    "file": "sql.png"
   },
   {
     "name": "MySQL",
     "file": "mysql.png"
   },
+
   {
-    "name": "Html",
-    "file": "html.png"
+    "name": "Machine Learning",
+    "file": "machine-learning.png"
   },
   {
-    "name": "Css",
-    "file": "css.png"
+    "name": "Artificial Intelligence (AI)",
+    "file": "ai.png"
   },
   {
-    "name": "Workflow Automation",
-    "file": "automation.png"
+    "name": "Microsoft Power BI",
+    "file": "powerbi.png"
+  },
+  {
+    "name": "C#",
+    "file": "csharp.png"
+  },
+
+  {
+    "name": "Prompt Engineering",
+    "file": "prompt-engineering.png"
   }
 ]
