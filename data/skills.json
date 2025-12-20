@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Python",
+    "icon": "🐍",
+    "level": 90
+  },
+  {
+    "name": "Machine Learning",
+    "icon": "🤖",
+    "level": 85
+  },
+  {
+    "name": "Artificial Intelligence",
+    "icon": "🧠",
+    "level": 80
+  },
+  {
+    "name": "Power BI",
+    "icon": "📊",
+    "level": 88
+  },
+  {
+    "name": "MySQL",
+    "icon": "🗄️",
+    "level": 82
+  },
+  {
+    "name": "Web Development",
+    "icon": "🌐",
+    "level": 87
+  },
+  {
+    "name": "Data Visualization",
+    "icon": "📈",
+    "level": 86
+  },
+  {
+    "name": "Workflow Automation",
+    "icon": "⚙️",
+    "level": 83
+  }
+]

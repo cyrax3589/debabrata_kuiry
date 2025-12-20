@@ -42,7 +42,8 @@
     updateActive();
 })();
 
-// 2) GitHub Projects Carousel with optional logos
+
+// 2) GitHub Projects Carousel with dynamic <reponame>.png logos
 (function(){
     const carousel = document.getElementById('projects-carousel');
     const btnPrev = document.getElementById('projects-prev');
@@ -62,11 +63,11 @@
     };
     const DEFAULT_PRIORITY = 100;
 
-    // Optional per-repo logos (keys must match repo.name)
-    const PROJECT_LOGOS = {
-        // "Car_Rental_Management_System": "assets/car-rental-logo.png",
-        // "Real-Time-Sentiment-Analysis-Using-Twitter": "assets/twitter-sentiment-logo.png"
-    };
+    // Build URL for <reponame>.png at repo root on main branch
+    function buildRepoLogoUrl(repoName){
+        const branch = 'main'; // change if your default branches differ
+        return `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repoName}/${branch}/${repoName}.png`;
+    }
 
     async function fetchRepos(){
         try{
@@ -97,18 +98,23 @@
                 const lang = repo.language || 'Multi-tech';
                 const desc = repo.description || 'Project description coming soon.';
 
-                const logoUrl = PROJECT_LOGOS[repo.name];
-                const logoHtml = logoUrl
-                    ? `<img src="${logoUrl}" alt="${repo.name} logo"
-                             style="width:32px;height:32px;border-radius:999px;object-fit:cover;">`
-                    : `<div style="font-size:1.1rem">📦</div>`;
+                const logoUrl = buildRepoLogoUrl(repo.name);
 
                 card.innerHTML = `
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-                        <div style="font-weight:700;max-width:75%;word-wrap:break-word;">
+                        <div style="font-weight:700;max-width:70%;word-wrap:break-word;">
                             ${repo.name}
                         </div>
-                        ${logoHtml}
+                        <div class="project-logo-wrapper" style="display:flex;align-items:center;justify-content:center;min-width:56px;min-height:56px;">
+                            <img src="${logoUrl}" alt="${repo.name} logo"
+                                 style="width:56px;height:56px;border-radius:18px;object-fit:cover;box-shadow:0 0 0 2px rgba(148,163,184,0.45);"
+                                 onerror="
+                                     this.onerror=null;
+                                     this.remove();
+                                     this.parentElement.textContent='📦';
+                                     this.parentElement.style.fontSize='1.6rem';
+                                 ">
+                        </div>
                     </div>
                     <div style="color:#22c55e;font-weight:600;margin-bottom:10px">
                         ⭐ ${stars} • ${lang}
@@ -152,6 +158,7 @@
 
     fetchRepos();
 })();
+
 
 // 3) Collaboration Projects Carousel (hard-coded data + optional logos)
 (function(){
@@ -205,8 +212,8 @@
 
             const logoHtml = project.logoUrl
                 ? `<img src="${project.logoUrl}" alt="${project.title} logo"
-                         style="width:32px;height:32px;border-radius:999px;object-fit:cover;">`
-                : `<div style="font-size:1.1rem">🟡</div>`;
+                         style="width:56px;height:56px;border-radius:18px;object-fit:cover;box-shadow:0 0 0 2px rgba(148,163,184,0.45);">`
+                : `<div style="font-size:1.6rem">🟡</div>`;
 
             const collaboratorsHtml = project.collaborators.map(c=>`
                 <li style="margin-bottom:4px;">
@@ -224,7 +231,7 @@
                     ${project.title}
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-                    <div style="font-weight:700;max-width:75%;word-wrap:break-word;color:#22c55e;">
+                    <div style="font-weight:700;max-width:70%;word-wrap:break-word;color:#22c55e;">
                         Early Cancer Lesion Identification Using Parallel Swin Encoder
                     </div>
                     ${logoHtml}
