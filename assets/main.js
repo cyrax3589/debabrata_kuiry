@@ -238,14 +238,14 @@
             logoUrl: 'assets/eclipse-logo.png',
             collaborators: [
                 {
-                    name: 'Anu22',
-                    github: 'https://github.com/ANU_GITHUB',
-                    linkedin: 'https://www.linkedin.com/in/ANU_LINKEDIN'
+                    name: 'Anu-253',
+                    github: 'https://github.com/Anu-253',
+                    linkedin: 'https://www.linkedin.com/in/anagha-p-kulkarni-723498341/'
                 },
                 {
-                    name: 'Vaibhav',
-                    github: 'https://github.com/VAIBHAV_GITHUB',
-                    linkedin: 'https://www.linkedin.com/in/VAIBHAV_LINKEDIN'
+                    name: 'B Chiru Vaibhav',
+                    github: 'https://github.com/Vaibhav5012',
+                    linkedin: 'https://www.linkedin.com/in/bchiruvaibhav/'
                 }
             ]
         }
