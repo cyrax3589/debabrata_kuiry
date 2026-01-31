@@ -1,5 +1,3 @@
-// main.js
-
 // 1) Navbar + active links + smooth scroll + year
 (function () {
     const navbar = document.getElementById('navbar');
@@ -234,7 +232,7 @@
             roleNote: 'Early Cancer Lesion Identification',
             description:
                 'Standalone offline skin-cancer detection system built with Swin Transformer + DenseNet-169 + U-Net architecture, deployed as a Windows WPF MSI installer using ONNX for real-time local inference.',
-            repoUrl: 'https://github.com/FRIEND_USERNAME/REPO_NAME',
+            repoUrl: 'https://github.com/Vaibhav5012/ECLIPSE',
             logoUrl: 'assets/eclipse-logo.png',
             collaborators: [
                 {

@@ -8,18 +8,6 @@
     "file": "c.png"
   },
   {
-    "name": "C++",
-    "file": "cpp.png"
-  },
-  {
-    "name": "Java",
-    "file": "java.png"
-  },
-  {
-    "name": "JavaScript",
-    "file": "javascript.png"
-  },
-  {
     "name": "HTML",
     "file": "html.png"
   },
@@ -49,11 +37,6 @@
     "name": "Microsoft Power BI",
     "file": "powerbi.png"
   },
-  {
-    "name": "C#",
-    "file": "csharp.png"
-  },
-
   {
     "name": "Prompt Engineering",
     "file": "prompt-engineering.png"
