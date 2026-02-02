@@ -179,7 +179,7 @@
                 carousel.appendChild(card);
             });
 
-            // ✅ VIEW ALL CARD (ALWAYS LAST)
+            // VIEW ALL CARD (ALWAYS LAST)
             const viewAllCard = document.createElement('div');
             viewAllCard.className = 'project-card';
             viewAllCard.innerHTML = `
@@ -221,7 +221,7 @@
 })();
 
 
-// 4) Collaboration Projects Carousel (UNCHANGED)
+// 4) Collaboration Projects Carousel
 (function () {
     const collabCarousel = document.getElementById('collab-carousel');
     const collabPrev = document.getElementById('collab-prev');
