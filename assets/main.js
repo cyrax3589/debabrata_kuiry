@@ -226,21 +226,136 @@
     const collabCarousel = document.getElementById('collab-carousel');
     const collabPrev = document.getElementById('collab-prev');
     const collabNext = document.getElementById('collab-next');
+
     if (!collabCarousel) return;
 
-    const COLLAB_PROJECTS = [/* unchanged */];
+    const COLLAB_PROJECTS = [
+        {
+            title: 'ECLIPSE',
+            roleNote: 'Early Cancer Lesion Identification',
+            description:
+                'Standalone offline skin-cancer detection system built with Swin Transformer + DenseNet-169 + U-Net architecture, deployed as a Windows WPF MSI installer using ONNX for real-time local inference.',
+            repoUrl: 'https://github.com/Vaibhav5012/ECLIPSE',
+            logoUrl: 'assets/eclipse-logo.png',
+            collaborators: [
+                {
+                    name: 'Anu-253',
+                    github: 'https://github.com/Anu-253',
+                    linkedin: 'https://www.linkedin.com/in/anagha-p-kulkarni-723498341/'
+                },
+                {
+                    name: 'B Chiru Vaibhav',
+                    github: 'https://github.com/Vaibhav5012',
+                    linkedin: 'https://www.linkedin.com/in/bchiruvaibhav/'
+                }
+            ]
+        }
+    ];
 
-    function renderCollabCards() { /* unchanged */ }
+    function renderCollabCards() {
+        collabCarousel.innerHTML = '';
+
+        if (COLLAB_PROJECTS.length === 0) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div class="project-title" style="margin-bottom:8px">
+                    No collaboration projects added yet
+                </div>
+                <p class="description-text">
+                    As you join more team projects, list them here
+                    to highlight shared work.
+                </p>
+            `;
+            collabCarousel.appendChild(card);
+            return;
+        }
+
+        COLLAB_PROJECTS.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+
+            const logoHtml = project.logoUrl
+                ? `<img src="${project.logoUrl}" alt="${project.title} logo">`
+                : `<div style="font-size:2rem">🟡</div>`;
+
+            const collaboratorsHtml = project.collaborators
+                .map(c => `
+                    <li style="margin-bottom:4px;">
+                        <span style="font-weight:600">${c.name}</span>
+                        <span style="color:var(--text-tertiary);font-size:0.85rem"> · </span>
+                        <a href="${c.github}" target="_blank" rel="noopener"
+                           style="color:var(--accent-primary);font-size:0.9rem;
+                                  text-decoration:none;margin-right:6px">
+                            GitHub
+                        </a>
+                        <a href="${c.linkedin}" target="_blank" rel="noopener"
+                           style="color:var(--accent-primary);font-size:0.9rem;
+                                  text-decoration:none">
+                            LinkedIn
+                        </a>
+                    </li>
+                `)
+                .join('');
+
+            card.innerHTML = `
+                <div style="display:flex;flex-direction:column;
+                            align-items:center;text-align:center;margin-bottom:8px;">
+                    <div class="project-logo-wrapper">
+                        ${logoHtml}
+                    </div>
+                    <div class="project-title" style="margin-bottom:2px;">
+                        ${project.title}
+                    </div>
+                    <div style="font-size:0.9rem;color:#22c55e;font-weight:600;">
+                        ${project.roleNote}
+                    </div>
+                </div>
+
+                <p class="description-text">
+                    ${project.description}
+                </p>
+
+                <a href="${project.repoUrl}" target="_blank" rel="noopener"
+                   class="project-link" style="display:inline-block;margin-bottom:10px;">
+                    View Collaboration Repo →
+                </a>
+
+                <div style="border-top:1px solid var(--border);
+                            padding-top:8px;margin-top:4px">
+                    <div style="font-size:0.85rem;color:var(--text-tertiary);
+                                margin-bottom:4px">
+                        Collaborators
+                    </div>
+                    <ul style="list-style:none;padding-left:0;margin:0">
+                        ${collaboratorsHtml}
+                    </ul>
+                </div>
+            `;
+
+            collabCarousel.appendChild(card);
+        });
+    }
 
     function scrollCollabByCard(direction) {
         const firstCard = collabCarousel.querySelector('.project-card');
         if (!firstCard) return;
+
         const cardWidth = firstCard.getBoundingClientRect().width + 16;
-        collabCarousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+        collabCarousel.scrollBy({
+            left: direction * cardWidth,
+            behavior: 'smooth'
+        });
     }
 
-    if (collabPrev) collabPrev.addEventListener('click', () => scrollCollabByCard(-1));
-    if (collabNext) collabNext.addEventListener('click', () => scrollCollabByCard(1));
+    if (collabPrev) {
+        collabPrev.addEventListener('click', () => scrollCollabByCard(-1));
+    }
+
+    if (collabNext) {
+        collabNext.addEventListener('click', () => scrollCollabByCard(1));
+    }
 
     renderCollabCards();
 })();
+
