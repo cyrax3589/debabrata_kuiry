@@ -532,3 +532,7 @@ a:focus, button:focus {
     outline: 3px solid rgba(99,102,241,0.12);
     outline-offset:3px;
 }
+
+.dae{
+    color: rgb(149, 149, 149)
+}
