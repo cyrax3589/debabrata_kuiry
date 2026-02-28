@@ -2,7 +2,7 @@
 <h3 align="center">Automation Engineer | Builder | Problem Solver</h3>
 
 <p align="center">
-  <a href="https://your-username.github.io/">
+  <a href="https://cyrax3589.github.io/debabrata_kuiry/">
     <img src="https://img.shields.io/badge/🌐 Live Portfolio-Visit Now-blue?style=for-the-badge">
   </a>
 </p>
